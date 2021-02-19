@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Dungeon/Scripts/DungeonMap.gd" type="Script" id=1]
+
+[node name="DungeonMap" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="CellsContainer" type="Spatial" parent="."]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 16.5, 33, -1 )
+current = true
+
+[node name="Tween" type="Tween" parent="."]
