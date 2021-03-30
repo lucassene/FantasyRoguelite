@@ -1,23 +1,23 @@
 extends Node
 
 # Entrances
-var ENTRANCE_01 = {path = "res://DungeonCells/Scenes/Entrances/DungeonEntrance_01.tscn",exits = []}
+var ENTRANCE_01 = {path = "res://DungeonCells/Scenes/Entrances/DGN_Entrance_01.tscn",exits = [direction.NORTH]}
 
 # Corridors
-var CORRIDOR_01 = {path = "res://DungeonCells/Scenes/Corridors/DungeonCorridor_01.tscn",exits = [direction.NORTH]}
-var CORRIDOR_02 = {path = "res://DungeonCells/Scenes/Corridors/DungeonCorridor_02.tscn",exits = [direction.EAST]}
-var CORRIDOR_03 = {path = "res://DungeonCells/Scenes/Corridors/DungeonCorridor_03.tscn",exits = [direction.WEST]}
+var CORRIDOR_01 = {path = "res://DungeonCells/Scenes/Corridors/DGN_Corridor_01.tscn",exits = [direction.SOUTH,direction.NORTH]}
+var CORRIDOR_02 = {path = "res://DungeonCells/Scenes/Corridors/DGN_Corridor_02.tscn",exits = [direction.SOUTH,direction.EAST]}
+var CORRIDOR_03 = {path = "res://DungeonCells/Scenes/Corridors/DGN_Corridor_03.tscn",exits = [direction.SOUTH,direction.WEST]}
 
 # Regulars
-var REGULAR_01 = {path = "res://DungeonCells/Scenes/Regular/DungeonCell_01.tscn",exits = [direction.WEST,direction.EAST]}
-var REGULAR_02 = {path = "res://DungeonCells/Scenes/Regular/DungeonCell_02.tscn",exits = [direction.WEST]}
-var REGULAR_03 = {path = "res://DungeonCells/Scenes/Regular/DungeonCell_03.tscn",exits = [direction.EAST]}
+var REGULAR_01 = {path = "res://DungeonCells/Scenes/Regular/DGN_Regular_01.tscn",exits = [direction.SOUTH,direction.WEST,direction.EAST]}
+var REGULAR_02 = {path = "res://DungeonCells/Scenes/Regular/DGN_Regular_02.tscn",exits = [direction.SOUTH,direction.WEST]}
+var REGULAR_03 = {path = "res://DungeonCells/Scenes/Regular/DGN_Regular_03.tscn",exits = [direction.SOUTH,direction.EAST]}
 
 # End
-var END_01 = {path = "res://DungeonCells/Scenes/End/DungeonEnd_01.tscn"}
+var END_01 = {path = "res://DungeonCells/Scenes/End/DGN_End_01.tscn",exits = [direction.SOUTH]}
 
 enum type {ENTRANCE,CORRIDOR,REGULAR,EXIT}
-enum direction {NORTH,WEST,EAST}
+enum direction {NORTH,WEST,EAST,SOUTH}
 
 var entrance_list = [ENTRANCE_01]
 var corridor_list = [CORRIDOR_01,CORRIDOR_02,CORRIDOR_03]
@@ -37,7 +37,7 @@ func get_regular(blocked_sides):
 func get_end():
 	randomize()
 	var random = randi() % end_list.size()
-	return end_list[random].path
+	return end_list[random]
 
 func get_random_scene(list,blocked_sides = []):
 	randomize()
@@ -57,4 +57,4 @@ func get_random_scene(list,blocked_sides = []):
 			if scene: break
 		if not scene:
 			return get_end()
-	return scene.path
+	return scene

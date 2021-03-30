@@ -1,6 +1,6 @@
 # Assets
-assets/
-assets/textures
+Assets/
+Assets/Textures
 
 # Godot-specific ignores
 .import/

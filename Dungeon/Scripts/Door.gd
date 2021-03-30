@@ -1,26 +1,31 @@
 extends Spatial
 
 onready var joint = $Joint
-onready var door = $Door
+onready var door = $DoorPivot/Door
+onready var waypoint_container = $WaypointContainer
+onready var entrance_waypoint = $WaypointContainer/WP_ENTRANCE
+onready var exit_waypoint = $WaypointContainer/WP_EXIT
+onready var anim_player = $AnimationPlayer
 
-export(Material) var door_material
-export(Material) var hover_material
+export(DungeonCellsDb.direction) var direction = DungeonCellsDb.direction.NORTH
 
-signal on_door_clicked(joint)
+var accessed = false
 
-func _ready():
-	door.material_override = door_material
+signal on_create_cell(joint,waypoints)
+signal on_move_player(waypoints)
 
-func get_joint_transform():
-	return joint.global_transform
+func get_joint():
+	return joint
 
-func _on_Area_mouse_entered():
-	door.material_override = hover_material
+func activate():
+	anim_player.play("open")
+	accessed = true
 
-func _on_Area_mouse_exited():
-	door.material_override = door_material
+func was_accessed():
+	return accessed
 
-func _on_Area_input_event(_camera, event, _click_position, _click_normal, _shape_idx):
-	if event.is_action_pressed("left_click"):
-		emit_signal("on_door_clicked",joint)
-		queue_free()
+func get_exit_waypoint():
+	return exit_waypoint.global_transform
+
+func get_entrance_waypoint():
+	return entrance_waypoint.global_transform

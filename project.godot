@@ -8,9 +8,32 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node",
+"class": "ActorController",
+"language": "GDScript",
+"path": "res://Utils/Scripts/Controller.gd"
+}, {
+"base": "Spatial",
+"class": "DungeonCell",
+"language": "GDScript",
+"path": "res://DungeonCells/Scripts/DungeonCell.gd"
+}, {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://Utils/Scripts/State.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://Utils/Scripts/StateMachine.gd"
+} ]
 _global_script_class_icons={
-
+"ActorController": "",
+"DungeonCell": "",
+"State": "",
+"StateMachine": ""
 }
 
 [application]
@@ -22,6 +45,7 @@ config/icon="res://icon.png"
 [autoload]
 
 DungeonCellsDb="*res://Utils/Scripts/DungeonCellsDB.gd"
+PlayerDeck="*res://Utils/Scripts/PlayerDeck.gd"
 
 [debug]
 
@@ -30,10 +54,11 @@ gdscript/warnings/return_value_discarded=false
 
 [display]
 
-window/size/width=1920
-window/size/height=1080
-window/size/test_width=1280
-window/size/test_height=720
+window/size/width=1080
+window/size/height=1920
+window/size/test_width=540
+window/size/test_height=960
+window/handheld/orientation="portrait"
 
 [input]
 
@@ -52,6 +77,8 @@ left_click={
 
 3d_physics/layer_1="world"
 3d_physics/layer_2="cell"
+3d_physics/layer_3="player"
+3d_physics/layer_4="actors"
 
 [rendering]
 
